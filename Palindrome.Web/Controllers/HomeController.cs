@@ -28,5 +28,28 @@ namespace Palindrome.Web.Controllers
         }
 
 
+        //This should be implemented in a service
+        private bool IsPalindrome(int number)
+        {
+            var result = true;
+
+            number = Math.Abs(number);
+
+            var numberStr = number.ToString();
+
+            if (numberStr.Length == 1)
+                return result;
+
+            for (int i = 0; i < numberStr.Length / 2; i++)
+            {
+                if (!numberStr[i].Equals(numberStr[numberStr.Length - 1 - i]))
+                {
+                    result = false;
+                    break;
+                }                    
+            }
+
+            return result;
+        }
     }
 }
