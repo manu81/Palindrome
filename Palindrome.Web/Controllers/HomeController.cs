@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Palindrome.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -28,6 +29,19 @@ namespace Palindrome.Web.Controllers
         }
 
 
+        //This should be an endpoint in a web api
+        [HttpGet]
+        public JsonResult IsPalindrome(IsPalindromeInputModel model)
+        {
+            var result = false;
+
+            if (ModelState.IsValid)
+                result = IsPalindrome(model.Number);
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+
         //This should be implemented in a service
         private bool IsPalindrome(int number)
         {
@@ -46,7 +60,7 @@ namespace Palindrome.Web.Controllers
                 {
                     result = false;
                     break;
-                }                    
+                }
             }
 
             return result;
